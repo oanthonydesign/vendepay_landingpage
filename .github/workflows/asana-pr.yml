@@ -1,0 +1,43 @@
+name: Asana Integration with Pull Requests
+
+on:
+  pull_request:
+    types: [opened, closed]
+
+jobs:
+  comment-on-asana:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Extract Asana task URL from PR body
+      id: extract
+      run: |
+        echo "Searching for Asana URL in PR description..."
+        echo "ASANA_URL=$(echo '${{ github.event.pull_request.body }}' | grep -oE 'https://app.asana.com/0/[0-9]+/[0-9]+')" >> $GITHUB_ENV
+
+    - name: Post comment to Asana
+      if: env.ASANA_URL != ''
+      env:
+        ASANA_URL: ${{ env.ASANA_URL }}
+        ASANA_ACCESS_TOKEN: ${{ secrets.ASANA_ACCESS_TOKEN }}
+      run: |
+        echo "Posting comment to Asana task: $ASANA_URL"
+
+        PR_TITLE="${{ github.event.pull_request.title }}"
+        PR_URL="${{ github.event.pull_request.html_url }}"
+        EVENT_TYPE="${{ github.event.action }}"
+
+        if [ "$EVENT_TYPE" == "opened" ]; then
+          COMMENT="🔃 Um novo Pull Request foi aberto: [$PR_TITLE]($PR_URL)"
+        elif [ "$EVENT_TYPE" == "closed" ] && [ "${{ github.event.pull_request.merged }}" == "true" ]; then
+          COMMENT="✅ O Pull Request [$PR_TITLE]($PR_URL) foi mesclado com sucesso!"
+        else
+          COMMENT="❌ O Pull Request [$PR_TITLE]($PR_URL) foi fechado sem merge."
+        fi
+
+        TASK_ID=$(echo $ASANA_URL | grep -oE '[0-9]+$')
+
+        curl -X POST "https://app.asana.com/api/1.0/tasks/$TASK_ID/stories" \
+          -H "Authorization: Bearer $ASANA_ACCESS_TOKEN" \
+          -H "Content-Type: application/json" \
+          -d "{\"text\": \"$COMMENT\"}"
