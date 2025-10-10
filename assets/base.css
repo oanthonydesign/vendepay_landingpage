@@ -357,7 +357,7 @@ body {
 }
 
 .vendepay-nav-button-container {
-    width: 163px;
+    min-width: 163px;
     height: 38.89px;
     display: flex;
     justify-content: center;
@@ -365,6 +365,7 @@ body {
     flex-direction: row;
     background: radial-gradient(50% 50% at 50% 50%, #101010 0%, #0E1A18 100%);
     border-radius: 10px;
+    padding: 0 20px;
 }
 
 .gradient-text2 {
@@ -398,7 +399,8 @@ body {
 
 .vendepay-nav-button p {
     color: #ffffff;
-    font-size: 11.41px;
+    font-size: 14px;
+    text-transform: uppercase;
 }
 
 .vendepay-header-texts-container {
@@ -640,8 +642,9 @@ body {
 
 .vendepay-header-button p {
     color: white;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 130%;
+    text-transform: uppercase;
 }
 
 .vendepay-header-button span {
