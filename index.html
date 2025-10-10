@@ -106,48 +106,93 @@
 </head>
 
 <body class="main">
-    <div class="vendepay-container">
-        <nav class="vendepay-nav">
-            <img src="./assets/logo.svg" width="158px" height="29.05px" alt="Vendepay" />
-            <div class="vendepay-flex-row vendepay-nav-gap !hidden md:!flex">
-                <a href="#home">Início</a>
-                <a href="#features">Funcionalidades</a>
-                <a href="#tex">Taxas</a>
-                <a href="#contact">Contato</a>
-                <a href="#help">Ajuda</a>
+    <!-- Fixed Navbar -->
+    <header class="vendepay-fixed-header">
+        <div class="vendepay-container">
+            <nav class="vendepay-nav">
+                <img src="./assets/logo.svg" width="158px" height="29.05px" alt="Vendepay" />
+                <div class="vendepay-flex-row vendepay-nav-gap !hidden md:!flex">
+                    <a href="#home">Início</a>
+                    <a href="#features">Funcionalidades</a>
+                    <a href="#tex">Taxas</a>
+                    <a href="#contact">Contato</a>
+                    <a href="#help">Ajuda</a>
+                </div>
+                <a href="#signup" class="vendepay-nav-button-container !hidden md:!flex">
+                    <div class="vendepay-nav-button">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_2010_1367)">
+                                <path opacity="0.8"
+                                    d="M10.7322 0.0977974H3.32816C1.87008 0.0977974 0.683838 1.28404 0.683838 2.74212V10.1462C0.683838 11.6043 1.87008 12.7905 3.32816 12.7905H10.7322C12.1903 12.7905 13.3766 11.6043 13.3766 10.1462V2.74212C13.3766 1.28404 12.1903 0.0977974 10.7322 0.0977974ZM9.14566 6.97303H7.55907V8.55962C7.55907 8.85208 7.32214 9.08848 7.0302 9.08848C6.73827 9.08848 6.50134 8.85208 6.50134 8.55962V6.97303H4.91475C4.62281 6.97303 4.38588 6.73662 4.38588 6.44416C4.38588 6.1517 4.62281 5.9153 4.91475 5.9153H6.50134V4.32871C6.50134 4.03625 6.73827 3.79984 7.0302 3.79984C7.32214 3.79984 7.55907 4.03625 7.55907 4.32871V5.9153H9.14566C9.43759 5.9153 9.67452 6.1517 9.67452 6.44416C9.67452 6.73662 9.43759 6.97303 9.14566 6.97303Z"
+                                    fill="white" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_2010_1367">
+                                    <rect width="12.6927" height="12.6927" fill="white"
+                                        transform="translate(0.683838 0.0977974)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+
+                        <p>Crie sua conta agora!</p>
+                    </div>
+                </a>
+                <button id="mobile-menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false" 
+                    class="md:hidden flex flex-col justify-center gap-[3px] px-[7px] py-[9px] mobile-nav-btn">
+                    <span class="hamburger-line w-[14px] h-[2px] rounded-full"
+                        style="background: linear-gradient(137.09deg, #0AF471 0%, #00454C 103.92%);"></span>
+                    <span class="hamburger-line w-[14px] h-[2px] rounded-full"
+                        style="background: linear-gradient(137.09deg, #0AF471 0%, #00454C 103.92%);"></span>
+                    <span class="hamburger-line w-[10px] h-[2px] rounded-full"
+                        style="background: linear-gradient(137.09deg, #0AF471 0%, #00454C 103.92%);"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay" aria-hidden="true">
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <img src="./assets/logo.svg" width="158px" height="29.05px" alt="Vendepay" />
+                <button id="mobile-menu-close" aria-label="Fechar menu" class="mobile-menu-close">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
             </div>
-            <a class="vendepay-nav-button-container !hidden md:!flex">
-                <div class="vendepay-nav-button">
+            
+            <nav class="mobile-menu-nav" role="navigation">
+                <a href="#home" class="mobile-menu-link">Início</a>
+                <a href="#features" class="mobile-menu-link">Funcionalidades</a>
+                <a href="#tex" class="mobile-menu-link">Taxas</a>
+                <a href="#contact" class="mobile-menu-link">Contato</a>
+                <a href="#help" class="mobile-menu-link">Ajuda</a>
+            </nav>
+
+            <div class="mobile-menu-footer">
+                <a href="#signup" class="mobile-menu-cta">
                     <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_2010_1367)">
+                        <g clip-path="url(#clip0_mobile)">
                             <path opacity="0.8"
                                 d="M10.7322 0.0977974H3.32816C1.87008 0.0977974 0.683838 1.28404 0.683838 2.74212V10.1462C0.683838 11.6043 1.87008 12.7905 3.32816 12.7905H10.7322C12.1903 12.7905 13.3766 11.6043 13.3766 10.1462V2.74212C13.3766 1.28404 12.1903 0.0977974 10.7322 0.0977974ZM9.14566 6.97303H7.55907V8.55962C7.55907 8.85208 7.32214 9.08848 7.0302 9.08848C6.73827 9.08848 6.50134 8.85208 6.50134 8.55962V6.97303H4.91475C4.62281 6.97303 4.38588 6.73662 4.38588 6.44416C4.38588 6.1517 4.62281 5.9153 4.91475 5.9153H6.50134V4.32871C6.50134 4.03625 6.73827 3.79984 7.0302 3.79984C7.32214 3.79984 7.55907 4.03625 7.55907 4.32871V5.9153H9.14566C9.43759 5.9153 9.67452 6.1517 9.67452 6.44416C9.67452 6.73662 9.43759 6.97303 9.14566 6.97303Z"
                                 fill="white" />
                         </g>
                         <defs>
-                            <clipPath id="clip0_2010_1367">
+                            <clipPath id="clip0_mobile">
                                 <rect width="12.6927" height="12.6927" fill="white"
                                     transform="translate(0.683838 0.0977974)" />
                             </clipPath>
                         </defs>
                     </svg>
-
-                    <p>Crie sua conta agora!</p>
-                </div>
-            </a>
-            <button class="md:hidden flex flex-col justify-center gap-[3px] px-[7px] py-[9px] mobile-nav-btn">
-                <span class="w-[14px] h-[2px] rounded-full"
-                    style="background: linear-gradient(137.09deg, #0AF471 0%, #00454C 103.92%);"></span>
-                <span class="w-[14px] h-[2px] rounded-full"
-                    style="background: linear-gradient(137.09deg, #0AF471 0%, #00454C 103.92%);"></span>
-                <span class="w-[10px] h-[2px] rounded-full"
-                    style="background: linear-gradient(137.09deg, #0AF471 0%, #00454C 103.92%);"></span>
-            </button>
-        </nav>
+                    <span>Crie sua conta agora!</span>
+                </a>
+            </div>
+        </div>
     </div>
 
     <!-- Header Desktop -->
-    <div class=" vendepay-header-container !hidden md:!flex" style="padding-top: 115px">
+    <div id="home" class=" vendepay-header-container !hidden md:!flex" style="padding-top: 115px">
         <div class="default-container">
             <div class="vendepay-header-texts-container">
 
@@ -3724,6 +3769,84 @@
         document.addEventListener('DOMContentLoaded', () => {
             console.log('🔍 DEBUG SCROLL - DOM carregado, analisando...');
             debugScroll();
+        });
+    </script>
+
+    <!-- Script para funcionalidade do Menu Mobile -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('mobile-menu-toggle');
+            const menuClose = document.getElementById('mobile-menu-close');
+            const menuOverlay = document.getElementById('mobile-menu-overlay');
+            const menuLinks = document.querySelectorAll('.mobile-menu-link, .mobile-menu-cta');
+            const body = document.body;
+
+            // Função para abrir menu
+            function openMenu() {
+                menuOverlay.classList.add('active');
+                menuToggle.setAttribute('aria-expanded', 'true');
+                menuOverlay.setAttribute('aria-hidden', 'false');
+                body.style.overflow = 'hidden'; // Prevenir scroll do body
+                
+                // Animar hamburger para X
+                const lines = menuToggle.querySelectorAll('.hamburger-line');
+                lines[0].style.transform = 'rotate(45deg) translateY(5px)';
+                lines[1].style.opacity = '0';
+                lines[2].style.transform = 'rotate(-45deg) translateY(-5px) translateX(2px)';
+                lines[2].style.width = '14px';
+            }
+
+            // Função para fechar menu
+            function closeMenu() {
+                menuOverlay.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuOverlay.setAttribute('aria-hidden', 'true');
+                body.style.overflow = ''; // Restaurar scroll do body
+                
+                // Restaurar hamburger
+                const lines = menuToggle.querySelectorAll('.hamburger-line');
+                lines[0].style.transform = 'none';
+                lines[1].style.opacity = '1';
+                lines[2].style.transform = 'none';
+                lines[2].style.width = '10px';
+            }
+
+            // Event listeners
+            menuToggle.addEventListener('click', function() {
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                if (isExpanded) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            menuClose.addEventListener('click', closeMenu);
+
+            // Fechar menu ao clicar no overlay (fora do menu)
+            menuOverlay.addEventListener('click', function(e) {
+                if (e.target === menuOverlay) {
+                    closeMenu();
+                }
+            });
+
+            // Fechar menu ao clicar em qualquer link
+            menuLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Fechar menu com tecla ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && menuOverlay.classList.contains('active')) {
+                    closeMenu();
+                }
+            });
+
+            // Adicionar transição suave aos hamburger lines
+            const hamburgerLines = menuToggle.querySelectorAll('.hamburger-line');
+            hamburgerLines.forEach(line => {
+                line.style.transition = 'all 0.3s ease';
+            });
         });
     </script>
 
