@@ -905,11 +905,6 @@
 
         <div class="notification-cont  populate-not flex-row w-[17560px] gap-5 relative overflow-hidden">
         </div>
-        <div class="notification-cont2 populate-not flex-row w-[17560px] gap-5 relative overflow-hidden">
-        </div>
-        <div class="notification-cont populate-not flex-row w-[17560px] gap-5 relative overflow-hidden semi-hide">
-        </div>
-
     </div>
 
 
@@ -1502,8 +1497,6 @@
     <div class="notification-wrapper flex flex-col gap-[14px] pt-[50px] pb-[100px] md:py-[180px]">
         <div class="notification-cont  populate-not flex-row w-[17560px] gap-5 relative overflow-hidden">
         </div>
-        <div class="notification-cont2 populate-not flex-row w-[17560px] gap-5 relative overflow-hidden">
-        </div>
     </div>
 
     <!-- <div class="bg-[url(./assets/nbar2.svg)] w-full h-[278px] my-[180px] bg-no-repeat bg-cover"> -->
@@ -1837,12 +1830,6 @@
         </div>
 
         <div class="notification-wrapper flex flex-col gap-[14px] pt-[50px] pb-[150px] md:pt-[0px] md:pb-[0px] md:py-[180px]">
-            <div class="notification-cont  flex-row w-[17560px] gap-5 relative overflow-hidden" id="bandeiras">
-
-            </div>
-            <div class="notification-cont2  flex-row w-[17560px] gap-5 relative overflow-hidden" id="bandeiras">
-
-            </div>
             <div class="notification-cont  flex-row w-[17560px] gap-5 relative overflow-hidden" id="bandeiras">
 
             </div>
@@ -3686,5 +3673,58 @@
                     }
                 }
             </script>
+
+    <script>
+        // Debug detalhado de scroll
+        let scrollIssues = [];
+
+        function debugScroll() {
+            const allElements = document.querySelectorAll('*');
+            
+            allElements.forEach((el, index) => {
+                const style = getComputedStyle(el);
+                
+                // Detecta problemas específicos
+                if (style.overflow === 'auto' || style.overflow === 'scroll' || style.overflowY === 'auto' || style.overflowY === 'scroll') {
+                    scrollIssues.push({
+                        element: el.tagName + (el.className ? '.' + el.className : ''),
+                        issue: 'Has scroll',
+                        overflow: style.overflow
+                    });
+                }
+                
+                if (style.position === 'sticky' || style.position === 'fixed') {
+                    scrollIssues.push({
+                        element: el.tagName + (el.className ? '.' + el.className : ''),
+                        issue: 'Position sticky/fixed',
+                        position: style.position
+                    });
+                }
+                
+                if (style.scrollSnapType && style.scrollSnapType !== 'none') {
+                    scrollIssues.push({
+                        element: el.tagName + (el.className ? '.' + el.className : ''),
+                        issue: 'Scroll snap active',
+                        snapType: style.scrollSnapType
+                    });
+                }
+            });
+            
+            console.table(scrollIssues);
+            return scrollIssues;
+        }
+
+        // Executar debug após carregamento
+        window.addEventListener('load', () => {
+            console.log('🔍 DEBUG SCROLL - Analisando problemas...');
+            debugScroll();
+        });
+
+        // Executar debug após DOM carregado
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🔍 DEBUG SCROLL - DOM carregado, analisando...');
+            debugScroll();
+        });
+    </script>
 
 </html>
