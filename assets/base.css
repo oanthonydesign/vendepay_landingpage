@@ -1537,38 +1537,48 @@ swiper-slide img {
 .awards-journey-swiper .swiper-button-next {
     position: absolute;
     top: 50%;
-    width: 44px;
-    height: 44px;
-    margin-top: -22px;
+    width: 82px;
+    height: 82px;
+    margin-top: -41px;
     z-index: 10;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #333;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: none;
+    border: none;
 }
 
 .awards-journey-swiper .swiper-button-prev {
     left: 50%;
-    margin-left: -585px; /* -1170px/2 - 22px */
+    margin-left: -585px; /* -1170px/2 - 41px */
 }
 
 .awards-journey-swiper .swiper-button-next {
     right: 50%;
-    margin-right: -585px; /* -1170px/2 - 22px */
+    margin-right: -585px; /* -1170px/2 - 41px */
 }
 
-.awards-journey-swiper .swiper-button-prev:after,
+.awards-journey-swiper .swiper-button-prev:after {
+    content: '';
+    width: 82px;
+    height: 82px;
+    background-image: url('./prev.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 0;
+}
+
 .awards-journey-swiper .swiper-button-next:after {
-    font-size: 18px;
-    color: #333 !important;
-    font-weight: bold;
-    opacity: 1 !important;
-    visibility: visible !important;
+    content: '';
+    width: 82px;
+    height: 82px;
+    background-image: url('./next.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 0;
 }
 
 .awards-journey-swiper .swiper-button-disabled {
