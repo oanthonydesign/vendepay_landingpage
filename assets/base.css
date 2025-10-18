@@ -1385,3 +1385,303 @@ swiper-slide img {
         rgb(75, 85, 99) 50%, 
         transparent 100%);
 }
+
+/* Sessão de premiações */
+.awards-journey-section * {
+    box-sizing: border-box;
+}
+
+.awards-journey-section {
+    position: relative;
+    overflow: hidden;
+    background: #060706;
+    padding: 40px 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@media (min-width: 1280px) {
+    .awards-journey-section {
+        padding: 64px 0 144px 0;
+    }
+}
+
+.awards-journey-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.awards-journey-badge {
+    display: inline-flex;
+    height: 35px;
+    align-items: center;
+    padding: 0 20px;
+    background: linear-gradient(135deg, rgba(255, 156, 43, 0.1), rgba(255, 38, 137, 0.1), rgba(151, 71, 255, 0.1));
+    border-radius: 50px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+@media (min-width: 1280px) {
+    .awards-journey-badge {
+        margin-bottom: 32px;
+    }
+}
+
+.awards-journey-badge-text {
+    background: linear-gradient(90deg, #FF9C2B, #FF2689, #9747FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+}
+
+.awards-journey-title {
+    font-size: 28px;
+    line-height: 1.2;
+    color: #FFFFFF;
+    margin: 0 0 40px 0;
+    font-weight: 700;
+}
+
+@media (min-width: 1280px) {
+    .awards-journey-title {
+        font-size: 44px;
+        margin-bottom: 80px;
+        max-width: 989px;
+    }
+}
+
+.awards-journey-swiper {
+    overflow: visible !important;
+    width: 100%;
+}
+
+.awards-journey-swiper .swiper-wrapper {
+    display: flex;
+}
+
+.awards-journey-swiper .swiper-slide {
+    height: auto;
+    width: 1170px !important;
+    margin-right: 41px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+    height: 400px;
+    width: 1170px;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #3C3C3C;
+    background: rgba(6, 7, 6, 0.64);
+}
+
+.card-image-wrapper {
+    height: 100%;
+    width: 500px;
+    flex-shrink: 0;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-content {
+    flex: 1;
+    padding: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    color: #FFFFFF;
+}
+
+.card-subtitle {
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 16px;
+    color: #FFFFFF;
+}
+
+.card-description {
+    color: #CCCCCC;
+    line-height: 1.6;
+    font-size: 16px;
+    margin: 0;
+}
+
+/* Swiper Navigation Buttons */
+.awards-journey-swiper .swiper-button-prev,
+.awards-journey-swiper .swiper-button-next {
+    position: absolute;
+    top: 50%;
+    width: 44px;
+    height: 44px;
+    margin-top: -22px;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.awards-journey-swiper .swiper-button-prev {
+    left: 50%;
+    margin-left: -585px; /* -1170px/2 - 22px */
+}
+
+.awards-journey-swiper .swiper-button-next {
+    right: 50%;
+    margin-right: -585px; /* -1170px/2 - 22px */
+}
+
+.awards-journey-swiper .swiper-button-prev:after,
+.awards-journey-swiper .swiper-button-next:after {
+    font-size: 18px;
+    color: #333 !important;
+    font-weight: bold;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.awards-journey-swiper .swiper-button-disabled {
+    opacity: 0.3;
+}
+
+/* Sempre mostrar as setas */
+.awards-journey-swiper .swiper-button-prev,
+.awards-journey-swiper .swiper-button-next {
+    display: flex !important;
+}
+
+/* Timeline */
+.awards-journey-timeline-wrapper {
+    margin-top: 80px;
+    display: none;
+}
+
+@media (min-width: 1280px) {
+    .awards-journey-timeline-wrapper {
+        display: block;
+    }
+}
+
+.awards-journey-progress-line-wrapper {
+    position: relative;
+    left: 50%;
+    margin-left: -960px;
+    width: 1920px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    margin-bottom: -10px;
+}
+
+.awards-journey-progress-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #0AF471, #00454C);
+    transition: width 1s ease;
+    width: 0%;
+}
+
+.awards-journey-milestones-wrapper {
+    display: none;
+}
+
+@media (min-width: 1280px) {
+    .awards-journey-milestones-wrapper {
+        display: flex;
+    }
+}
+
+.awards-journey-milestones {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.awards-journey-milestone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.awards-journey-milestone-dot-outer {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #3C3C3C;
+    background: #060706;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    transition-delay: 0.3s;
+}
+
+.awards-journey-milestone-dot-inner {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #3C3C3C;
+    transition: all 0.3s;
+    transition-delay: 0.3s;
+}
+
+.awards-journey-milestone[data-actived="true"] .awards-journey-milestone-dot-outer {
+    border-color: #0AF471;
+    background: linear-gradient(135deg, #0AF471, #00454C);
+}
+
+.awards-journey-milestone[data-actived="true"] .awards-journey-milestone-dot-inner {
+    background: #0AF471;
+}
+
+.awards-journey-milestone-label {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: #666666;
+    transition: color 0.3s;
+    transition-delay: 0.3s;
+    white-space: nowrap;
+}
+
+.awards-journey-milestone[data-actived="true"] .awards-journey-milestone-label {
+    color: #FFFFFF;
+}
