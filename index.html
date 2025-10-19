@@ -152,7 +152,7 @@
     </header>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu-overlay" class="mobile-menu-overlay" aria-hidden="true">
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay" inert="true">
         <div class="mobile-menu">
             <div class="mobile-menu-header">
                 <img src="./assets/logo.svg" width="158px" height="29.05px" alt="Vendepay" />
@@ -2222,7 +2222,7 @@
                             <div class="swiper-slide">
                                 <div class="card">
                                     <div class="card-image-wrapper">
-                                        <img src="https://via.placeholder.com/496x400/FF9C2B/ffffff?text=Pulseira+%2B+Carteira" alt="Pulseira + Carteira" class="card-image">
+                                        <img src="./assets/prem_test.webp" alt="Premio 1" class="card-image">
                                     </div>
                                     <div class="card-content">
                                         <h3 class="card-title">10 mil</h3>
@@ -2235,7 +2235,7 @@
                             <div class="swiper-slide">
                                 <div class="card">
                                     <div class="card-image-wrapper">
-                                        <img src="https://via.placeholder.com/496x400/FF2689/ffffff?text=Placa+Spielberg" alt="Placa Spielberg" class="card-image">
+                                        <img src="./assets/prem_test.webp" alt="Premio 2" class="card-image">
                                     </div>
                                     <div class="card-content">
                                         <h3 class="card-title">100 mil</h3>
@@ -2248,7 +2248,7 @@
                             <div class="swiper-slide">
                                 <div class="card">
                                     <div class="card-image-wrapper">
-                                        <img src="https://via.placeholder.com/496x400/9747FF/ffffff?text=Placa+Newton" alt="Placa Newton" class="card-image">
+                                        <img src="./assets/prem_test.webp" alt="Premio 3" class="card-image">
                                     </div>
                                     <div class="card-content">
                                         <h3 class="card-title">500 mil</h3>
@@ -2261,7 +2261,7 @@
                             <div class="swiper-slide">
                                 <div class="card">
                                     <div class="card-image-wrapper">
-                                        <img src="https://via.placeholder.com/496x400/4ECDC4/ffffff?text=Placa+Tesla" alt="Placa Tesla" class="card-image">
+                                        <img src="./assets/prem_test.webp" alt="Premio 4" class="card-image">
                                     </div>
                                     <div class="card-content">
                                         <h3 class="card-title">1 milhão</h3>
@@ -2274,7 +2274,7 @@
                             <div class="swiper-slide">
                                 <div class="card">
                                     <div class="card-image-wrapper">
-                                        <img src="https://via.placeholder.com/496x400/FFD93D/333333?text=Placa+Turing" alt="Placa Turing" class="card-image">
+                                        <img src="./assets/prem_test.webp" alt="Premio 5" class="card-image">
                                     </div>
                                     <div class="card-content">
                                         <h3 class="card-title">5 milhões</h3>
@@ -2287,7 +2287,7 @@
                             <div class="swiper-slide">
                                 <div class="card">
                                     <div class="card-image-wrapper">
-                                        <img src="https://via.placeholder.com/496x400/6BCF7F/ffffff?text=Placa+Jobs" alt="Placa Jobs" class="card-image">
+                                        <img src="./assets/prem_test.webp" alt="Premio 6" class="card-image">
                                     </div>
                                     <div class="card-content">
                                         <h3 class="card-title">10 milhões</h3>
@@ -2300,7 +2300,7 @@
                             <div class="swiper-slide">
                                 <div class="card">
                                     <div class="card-image-wrapper">
-                                        <img src="https://via.placeholder.com/496x400/FF6B6B/ffffff?text=Placa+Gates" alt="Placa Gates" class="card-image">
+                                        <img src="./assets/prem_test.webp" alt="Premio 7" class="card-image">
                                     </div>
                                     <div class="card-content">
                                         <h3 class="card-title">50 milhões</h3>
@@ -2313,7 +2313,7 @@
                             <div class="swiper-slide">
                                 <div class="card">
                                     <div class="card-image-wrapper">
-                                        <img src="https://via.placeholder.com/496x400/A8E6CF/333333?text=Placa+Da+Vinci" alt="Placa Da Vinci" class="card-image">
+                                        <img src="./assets/prem_test.webp" alt="Premio 8" class="card-image">
                                     </div>
                                     <div class="card-content">
                                         <h3 class="card-title">100 milhões</h3>
@@ -3852,30 +3852,36 @@
             function openMenu() {
                 menuOverlay.classList.add('active');
                 menuToggle.setAttribute('aria-expanded', 'true');
-                menuOverlay.setAttribute('aria-hidden', 'false');
+                // Usar inert=false para tornar o menu acessível quando aberto
+                menuOverlay.removeAttribute('inert');
                 body.style.overflow = 'hidden'; // Prevenir scroll do body
                 
                 // Animar hamburger para X
                 const lines = menuToggle.querySelectorAll('.hamburger-line');
-                lines[0].style.transform = 'rotate(45deg) translateY(5px)';
-                lines[1].style.opacity = '0';
-                lines[2].style.transform = 'rotate(-45deg) translateY(-5px) translateX(2px)';
-                lines[2].style.width = '14px';
+                if (lines.length >= 3) {
+                    lines[0].style.transform = 'rotate(45deg) translateY(5px)';
+                    lines[1].style.opacity = '0';
+                    lines[2].style.transform = 'rotate(-45deg) translateY(-5px) translateX(2px)';
+                    lines[2].style.width = '14px';
+                }
             }
 
             // Função para fechar menu
             function closeMenu() {
                 menuOverlay.classList.remove('active');
                 menuToggle.setAttribute('aria-expanded', 'false');
-                menuOverlay.setAttribute('aria-hidden', 'true');
+                // Usar inert=true para tornar o menu inacessível quando fechado
+                menuOverlay.setAttribute('inert', 'true');
                 body.style.overflow = ''; // Restaurar scroll do body
                 
                 // Restaurar hamburger
                 const lines = menuToggle.querySelectorAll('.hamburger-line');
-                lines[0].style.transform = 'none';
-                lines[1].style.opacity = '1';
-                lines[2].style.transform = 'none';
-                lines[2].style.width = '10px';
+                if (lines.length >= 3) {
+                    lines[0].style.transform = 'none';
+                    lines[1].style.opacity = '1';
+                    lines[2].style.transform = 'none';
+                    lines[2].style.width = '10px';
+                }
             }
 
             // Event listeners
