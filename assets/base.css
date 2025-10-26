@@ -47,8 +47,32 @@
   font-style: italic;
 }
 
+/* Estilização da barra de scroll */
 ::-webkit-scrollbar {
-  display: none;
+  width: 12px;
+  height: 12px;
+  /* display: none; */
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff0000;
+  border-radius: 10px;
+  border: 2px solid #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #cc0000;
+}
+
+/* Para Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ff0000 #1a1a1a;
 }
 
 html {
