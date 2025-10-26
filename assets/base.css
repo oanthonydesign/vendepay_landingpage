@@ -60,19 +60,19 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ff0000;
+  background: #888;
   border-radius: 10px;
   border: 2px solid #1a1a1a;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #cc0000;
+  background: #555;
 }
 
 /* Para Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #ff0000 #1a1a1a;
+  scrollbar-color: #888 #1a1a1a;
 }
 
 html {
@@ -110,7 +110,6 @@ body > .vendepay-fixed-header {
   background: #000000;
   position: relative;
 }
-
 
 /* Prevenir scroll travado em mobile */
 @media (max-width: 767px) {
@@ -406,11 +405,11 @@ body {
   overflow: visible;
 }
 
-@media (max-width: 768px) {
-  .vendepay-container {
+/* @media (max-width: 768px) {
+   .vendepay-container {
     margin: 0;
   }
-}
+} */
 
 .vendepay-container-swiper-blog {
   margin: 0 auto;
@@ -695,6 +694,11 @@ body {
   background: linear-gradient(90deg, #ffffff 0%, #9bf1c1 100%);
 }
 
+.container-bandeiras {
+  overflow: hidden;
+  width: 100%;
+}
+
 .notification::before {
   content: '';
   position: absolute;
@@ -718,7 +722,7 @@ body {
 }
 
 .notification-wrapper {
-  overflow: hidden;
+  overflow: visible;
   width: 100%;
   position: relative;
   /* Garante que não cria contexto de scroll */
@@ -1579,6 +1583,8 @@ swiper-slide img {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
+  max-height: none !important;
+  overflow: visible !important;
 }
 
 .faq-item[data-faq-item] .faq-icon {

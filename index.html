@@ -104,6 +104,43 @@
         });
     </script>
 
+    <!-- Script para funcionalidade do FAQ Accordion -->
+    <script>
+        // Função global para toggle FAQ
+        function toggleFAQ(element) {
+            try {
+                // Encontra os elementos dentro do item clicado
+                const content = element.querySelector('.faq-content-wrapper');
+                const icon = element.querySelector('.faq-icon');
+
+                if (!content || !icon) {
+                    console.error('Elementos não encontrados:', { content, icon });
+                    return;
+                }
+
+                // Verifica se está aberto
+                const isOpen = content.classList.contains('show');
+
+                // Fecha TODOS os itens FAQ primeiro
+                document.querySelectorAll('.faq-content-wrapper').forEach(function (wrapper) {
+                    wrapper.classList.remove('show');
+                });
+
+                document.querySelectorAll('.faq-icon').forEach(function (iconEl) {
+                    iconEl.style.transform = 'rotate(0deg)';
+                });
+
+                // Se o item atual estava fechado, abre ele
+                if (!isOpen) {
+                    content.classList.add('show');
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            } catch (error) {
+                console.error('Erro no toggleFAQ:', error);
+            }
+        }
+    </script>
+
 </head>
 
 <body class="main">
@@ -195,13 +232,13 @@
 
     <!-- Script do Menu Mobile -->
     <script>
-        setTimeout(function() {
+        setTimeout(function () {
             const btn = document.getElementById('mobile-menu-toggle');
             const btnClose = document.getElementById('mobile-menu-close');
             const overlay = document.getElementById('mobile-menu-overlay');
             const menuLinks = document.querySelectorAll('.mobile-menu-link, .mobile-menu-cta');
             const body = document.body;
-            
+
             // Função para fechar o menu
             function closeMenu() {
                 if (overlay) {
@@ -211,7 +248,7 @@
                     btn.setAttribute('aria-expanded', 'false');
                 }
             }
-            
+
             // Função para abrir o menu
             function openMenu() {
                 if (overlay) {
@@ -221,10 +258,10 @@
                     btn.setAttribute('aria-expanded', 'true');
                 }
             }
-            
+
             // Toggle menu ao clicar no botão hamburger
             if (btn) {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     const isOpen = overlay.classList.contains('active');
                     if (isOpen) {
                         closeMenu();
@@ -233,33 +270,33 @@
                     }
                 });
             }
-            
+
             // Fechar menu ao clicar no botão X
             if (btnClose) {
                 btnClose.addEventListener('click', closeMenu);
             }
-            
+
             // Fechar menu ao clicar nos links
-            menuLinks.forEach(function(link) {
+            menuLinks.forEach(function (link) {
                 link.addEventListener('click', closeMenu);
             });
-            
+
             // Fechar menu ao clicar no overlay (fora do menu)
             if (overlay) {
-                overlay.addEventListener('click', function(e) {
+                overlay.addEventListener('click', function (e) {
                     if (e.target === overlay) {
                         closeMenu();
                     }
                 });
             }
-            
+
             // Fechar menu com tecla ESC
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape' && overlay.classList.contains('active')) {
                     closeMenu();
                 }
             });
-            
+
         }, 100);
     </script>
 
@@ -479,9 +516,9 @@
 
         <!--  -->
         <div
-            class="w-full bg-[url(./assets/ptBaixo.svg)] bg-no-repeat bg-center bg-cover min-h-[424px] md:h-[400px] max-w-[1920px] gradient-border-t">
+            class="w-full bg-[url(./assets/ptBaixo.svg)] bg-no-repeat bg-center bg-cover h-fit md:h-[400px] max-w-[1920px] gradient-border-t">
             <div
-                class="w-full justify-between  flex flex-col md:flex-row items-center z-[50] bg-[rgba(6,7,6,0.47)] pt-[100px] ">
+                class="w-full justify-between  flex flex-col md:flex-row items-center z-[50] bg-[rgba(6,7,6,0.47)] pt-[120px] pb-[60px]">
                 <div class="vendepay-container justify-between  flex flex-col md:flex-row items-center">
                     <div
                         class="w-full vendepay-container justify-between  flex flex-col md:flex-row items-center md:items-center md:gap-[60px]">
@@ -533,7 +570,7 @@
     <div class="divisor"></div>
 
 
-    <div class="bg-[url(./assets/luzbgef.svg)] bg-no-repeat bg-right md:pb-[150px]">
+    <div style="padding-top:180px" class="bg-[url(./assets/luzbgef.svg)] bg-no-repeat bg-right md:pb-[150px]">
         <div class="w-full flex flex-col justify-center items-center mt-[-60px] md:mt-[100px] gap-[20px]">
             <div
                 class="w-[215px] h-[45px] rounded-[32px] flex justify-center items-center bg-button-border bg-button gap-[6px]">
@@ -830,7 +867,7 @@
 
 
         </div>
-        <div class="flex flex-col pt-[120px] md:pt-180px vendepay-container ">
+        <div class="flex flex-col pt-[120px] md:pt-180px vendepay-container px-6 md:px-0">
             <div class="flex flex-col gap-[15px] md:flex-row md:gap-[98px] justify-between w-full items-center">
                 <div class="flex flex-col  gap-[37px] ">
                     <div
@@ -965,9 +1002,10 @@
     </div>
 
     <div
-        class="notification-wrapper flex flex-col gap-[14px] pt-[50px] pb-[180px] md:pt-[0px] md:pb-[0px] md:py-[180px]">
+        class="notification-wrapper flex flex-col gap-[14px] pt-[50px] pb-[180px] md:pt-[0px] md:pb-[0px] md:py-[180px] !overflow-hidden">
 
-        <div class="notification-cont  populate-not flex-row w-[17560px] gap-5 relative overflow-hidden">
+        <div
+            class="notification-cont slider-venda-aprovada  populate-not flex-row w-[17560px] gap-5 relative overflow-hidden">
         </div>
     </div>
 
@@ -975,7 +1013,7 @@
     <!-- <div class="bg-[url(./assets/notification.svg)] w-full h-[278px] my-[180px] bg-no-repeat bg-cover"> -->
 
     </div>
-    <div class="vendepay-container pb-[75px] md:!mt-[0px] !mt-[-100px] md:pt-[100px]">
+    <div class="vendepay-container pb-[75px] md:!mt-[0px] !mt-[-100px] md:pt-[100px] px-6 md:px-0">
         <div class="flex flex-col md:flex-row justify-center md:gap-[32px] gap-[20px]">
             <div class="flex flex-col gap-[29px] md:w-[50%]">
                 <p
@@ -1556,14 +1594,14 @@
 
     <!-- NBAR -->
 
-    <div class="notification-wrapper flex flex-col gap-[14px] pt-[50px] pb-[100px] md:py-[180px]">
+    <div class="notification-wrapper flex flex-col gap-[14px] pt-[50px] pb-[100px] md:py-[180px] !overflow-hidden">
         <div class="notification-cont  populate-not flex-row w-[17560px] gap-5 relative overflow-hidden">
         </div>
     </div>
 
     <!-- <div class="bg-[url(./assets/nbar2.svg)] w-full h-[278px] my-[180px] bg-no-repeat bg-cover"> -->
     </div>
-    <div class="vendepay-container w-full flex flex-col justify-center items-center">
+    <div class="vendepay-container w-full flex flex-col justify-center items-center px-6 md:px-0">
         <p
             class="text-[34.03px] md:text-[59px] font-medium  text-white  md:w-[1302px] text-center leading-[43.87px] md:leading-[66.46px] tracking-[-1.3px]">
             Vendas, assinaturas, métricas e conteúdos... tudo integrado à uma mesma plataforma. <span
@@ -1586,7 +1624,7 @@
 
         </button>
     </div>
-    <div class="vendepay-container md:pt-[190px] pt-[100px] flex flex-col md:flex-row">
+    <div class="vendepay-container md:pt-[190px] pt-[100px] flex flex-col md:flex-row px-6 md:px-0">
         <div class="flex flex-col w-full items-center justify-center md:items-start md:justify-normal">
             <div
                 class="w-[215px] h-[42px] rounded-[32px] flex flex-row justify-center items-center bg-button-border bg-button gap-[6px]">
@@ -1621,7 +1659,7 @@
     " />
     </div>
     <div
-        class="vendepay-container w-full flex md:flex-row flex-col justify-center items-center gap-[11px] md:justify-between md:pt-[160px] pt-[40px]">
+        class="vendepay-container w-full flex md:flex-row flex-col justify-center items-center gap-[11px] md:justify-between md:pt-[160px] pt-[40px] px-6 md:px-0">
         <div
             class="w-full md:w-1/4 h-[334px] border-[0.87px] px-[25px] border-[#5757579E] backdrop-blur-[16.960277557373047px] bg-[rgba(12,16,16,0.77)] flex flex-col gap-[14px] rounded-[15px]">
             <div
@@ -1861,11 +1899,12 @@
             </div>
         </div>
     </div>
-    <div class="vendepay-container2 pt-[90px] pb-[90px]">
-        <p class="text-white text-[25.8px] text-[#EDEDED] leading-[111%] tracking-[-1.5px]">Integração com todas as
+    <div class="vendepay-container2 container-bandeiras pt-[90px] pb-[90px]">
+        <p class="text-white px-6 md:px-0 text-[25.8px] text-[#EDEDED] leading-[111%] tracking-[-1.5px]">Integração com
+            todas as
             principais bandeiras e
             carteiras digitais</p>
-        <div class="mt-[31px] w-[640px] h-[5px] rounded-[8px]"
+        <div class="mt-[31px] w-[640px] h-[5px] rounded-[8px] ml-6 md:ml-0"
             style="background: linear-gradient(137.09deg, #0AF471 0%, #00454C 103.92%);">
 
         </div>
@@ -1929,7 +1968,7 @@
         </div>
     </div>
     <div
-        class="bg-[url(./assets/luzbg.svg)] bg-contain md:bg-cover bg-center w-full bg-no-repeat pt-[100px] md:pt-[250px]">
+        class="bg-[url(./assets/luzbg.svg)] bg-contain md:bg-cover bg-center w-full bg-no-repeat pt-[100px] md:pt-[250px] px-6 md:px-0">
         <div class="vendepay-container flex flex-col md:flex-row justify-between gap-[35px] pt-[50px]">
             <div class="flex flex-col gap-[36px] justify-center items-center md:justify-normal md:items-start w-full">
                 <div
@@ -2034,7 +2073,7 @@
 
         </div>
     </div>
-    <div class="mt-[100px] md:mt-[150px]">
+    <div class="mt-[100px] md:mt-[150px] px-6 md:px-0">
 
         <div class="vendepay-container w-full flex flex-col md:flex-row justify-between">
             <div class="flex flex-col  gap-[36px]">
@@ -2151,12 +2190,6 @@
                                 </p>
                             </div>
                             <div class="flex flex-row items-center pt-[48px] gap-[13px]">
-                                <button
-                                    class="hover-brilho w-[108px] md:w-[193px] h-[38px] md:h-[69px] border-[0.81px] border-[#0AF57147] rounded-[14.52px] flex justify-center items-center cursor-pointer"
-                                    id="vendepay">
-                                    <img src="./assets/logo.svg" width="138px" height="25px"
-                                        class="w-[77px] md:w-[138px]" />
-                                </button>
                                 <button id="kirvano"
                                     class="hover-brilho w-[108px] md:w-[193px] h-[38px] md:h-[69px] border-[0.81px] border-[#58836B] rounded-[14.52px] flex justify-center items-center cursor-pointer">
                                     <img src="./assets/kirvano.svg" width="138px" height="25px"
@@ -2167,13 +2200,13 @@
                                     <img src="./assets/cartpanda.svg" width="138px" height="25px"
                                         class="w-[77px] md:w-[138px]" />
                                 </button>
-                            </div>
-                            <div class="flex flex-row items-center pt-[13px] gap-[13px]">
                                 <button id="kiwify"
                                     class="w-[108px] md:w-[193px] h-[38px] md:h-[69px] border-[0.81px] border-[#58836B] rounded-[14.52px] flex justify-center items-center hover-brilho cursor-pointer">
                                     <img src="./assets/kiwify.svg" width="138px" height="25px"
                                         class="w-[77px] md:w-[138px]" />
                                 </button>
+                            </div>
+                            <div class="flex flex-row items-center pt-[13px] gap-[13px]">
                                 <button id="cakto"
                                     class="w-[108px] md:w-[193px] h-[38px] md:h-[69px] border-[0.81px] border-[#58836B] rounded-[14.52px] flex justify-center items-center hover-brilho cursor-pointer">
                                     <img src="./assets/cakto.svg" width="138px" height="25px"
@@ -2835,7 +2868,7 @@
 
             <!-- Componente de texto -->
             <div
-                class="vendepay-container2 flex flex-col md:flex-row w-full h-full gap-[70px] !mt-[80px] md:!mt-[155px]">
+                class="vendepay-container2 tabs-seguranca flex flex-col md:flex-row w-full h-full gap-[70px] !mt-[80px] md:!mt-[155px]">
                 <div class="flex flex-col gap-[50px] h-full justify-between order-2 md:order-1">
                     <!-- Elemento selecionado -->
                     <div class="w-full md:w-[521px] flex flex-col gap-[25px]">
@@ -2924,7 +2957,7 @@
 
             <div class="vendepay-container !mt-[90px] md:!mt-[203px] md:bg-[#0E1010C7] md:px-[86px] py-[72px] md:border-[#5757579E] md:border-[0.77px] efeito-novo rounded-[13.7px]"
                 style="backdrop-filter: blur(15.020614624023438px)">
-                <div class=" z-[10]">
+                <div class=" z-[10] w-full">
                     <div class="w-full flex flex-col md:flex-row items-center justify-between">
                         <p
                             class="text-[40px] tracking-[-2.3px] w-[100vw] md:text-[53.82px] white-gradient order-2 md:order-1 text-center md:text-left">
@@ -2955,14 +2988,13 @@
                     </div>
 
                     <div
-                        class="flex mobile-backdrop-only flex-col mt-[30px] md:mt-[60px] gap-[37px] mt-[103px] p-[17px] bg-[#0E1010C7] md:bg-transparent border-[#5757579E] border-[0.77px] rounded-[13.7px] md:bg-none md:border-[0px] md:rounded-[0px]">
+                        class="faq-section flex mobile-backdrop-only flex-col mt-[30px] md:mt-[60px] gap-[37px] mt-[103px] p-[17px] bg-[#0E1010C7] md:bg-transparent border-[#5757579E] border-[0.77px] rounded-[13.7px] md:bg-none md:border-[0px] md:rounded-[0px]">
 
                         <div class="flex flex-col faq-item cursor-pointer" data-faq-item onclick="toggleFAQ(this)">
                             <div class="w-full items-center justify-between flex flex-row">
                                 <p
                                     class="text-[#EDEDED] text-[22px]  tracking-[-1.5px] md:text-[28.61px] leading-[111.00000000000001%] faq-question">
-                                    O que é a
-                                    VendePay?</p>
+                                    O que é a VendePay?</p>
                                 <button
                                     class="bg-[#151515] flex-shrink-0 border-[1px] border-[#FFFFFF66] drop-do-faq rounded-full w-[47px] h-[47px] flex justify-center items-center faq-toggle-btn">
                                     <img src="./assets/svgexport-3.svg" class="faq-icon" />
