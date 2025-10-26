@@ -1089,7 +1089,7 @@
         </div>
     </div>
 
-    <div class="vendepay-container flex flex-col gap-[20px] md:gap-[0px] md:hidden">
+    <div class="vendepay-container video-mobile flex flex-col gap-[20px] md:gap-[0px]">
         <video class="pb-[86px]" id="heroGif" class="hero__gif w-full h-auto rounded-2xl" autoplay loop muted
             playsinline preload="auto" data-aos="fade-in" aria-label="Animação do produto">
             <source src="./assets/gifs/gif2.mp4" type="video/mp4" />
@@ -1108,7 +1108,7 @@
                         <p class="text-[12.5px] leading-[130%]  z-[50]">Inteligência Artificial</p>
                     </div>
                 </div>
-                <p class="white-gradient text-[43px] md:text-[51px] leading-[109%] md:w-[451px]">Experiemente nosso
+                <p class="white-gradient text-[43px] md:text-[51px] leading-[109%] md:w-[451px]">Experimente nosso
                     gerador de video de
                     <span class="text-gradient-2">IA Gratuito</span>
                 </p>
@@ -1905,7 +1905,7 @@
             todas as
             principais bandeiras e
             carteiras digitais</p>
-        <div class="mt-[31px] w-[640px] h-[5px] rounded-[8px] ml-6 md:ml-0"
+        <div class="mt-[31px] w-[640px] h-[5px] rounded-[8px] ml-6 md:ml-0 mb-8"
             style="background: linear-gradient(137.09deg, #0AF471 0%, #00454C 103.92%);">
 
         </div>
@@ -4171,11 +4171,6 @@
                     });
 
                     function updateAwardsTimeline(activeIndex) {
-                        // Calculate to go exactly to 50% after the active milestone
-                        // For 8 slides (indices 0-7), formula: ((activeIndex * 2 + 1) / 14) * 100
-                        const progressPercent = ((activeIndex * 2 + 1) / (totalSlides * 2 - 2)) * 100;
-                        progressLine.style.width = `${progressPercent}%`;
-
                         // Update milestones
                         milestones.forEach((milestone, index) => {
                             if (index <= activeIndex) {
@@ -4184,6 +4179,40 @@
                                 milestone.setAttribute('data-actived', 'false');
                             }
                         });
+
+                        // Get the position of the last active milestone
+                        const activeMilestone = milestones[activeIndex];
+                        const nextMilestone = milestones[activeIndex + 1];
+                        const progressLineWrapper = document.querySelector('.awards-journey-progress-line-wrapper');
+
+                        if (activeMilestone && progressLineWrapper) {
+                            // If it's the last milestone, fill 100%
+                            if (activeIndex === totalSlides - 1) {
+                                progressLine.style.width = '100%';
+                            } else {
+                                // Get absolute positions
+                                const milestoneRect = activeMilestone.getBoundingClientRect();
+                                const wrapperRect = progressLineWrapper.getBoundingClientRect();
+
+                                // Calculate the center of the active milestone
+                                const milestoneCenterX = milestoneRect.left + (milestoneRect.width / 2);
+
+                                let targetX = milestoneCenterX;
+
+                                // If there's a next milestone, go halfway to it
+                                if (nextMilestone) {
+                                    const nextMilestoneRect = nextMilestone.getBoundingClientRect();
+                                    const nextMilestoneCenterX = nextMilestoneRect.left + (nextMilestoneRect.width / 2);
+                                    targetX = milestoneCenterX + ((nextMilestoneCenterX - milestoneCenterX) / 2);
+                                }
+
+                                const wrapperLeft = wrapperRect.left;
+                                const wrapperWidth = wrapperRect.width;
+
+                                const progressWidth = ((targetX - wrapperLeft) / wrapperWidth) * 100;
+                                progressLine.style.width = `${progressWidth}%`;
+                            }
+                        }
                     }
 
                     // Click on milestones
