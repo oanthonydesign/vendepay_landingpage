@@ -4083,123 +4083,8 @@
                 });
             </script>
 
-            <!-- Script para funcionalidade do Menu Mobile -->
+            <!-- Script para Smooth Scroll com offset (compensar navbar fixa) -->
             <script>
-                console.log('Script do menu mobile carregado!');
-                
-                document.addEventListener('DOMContentLoaded', function () {
-                    console.log('DOMContentLoaded disparado!');
-                    
-                    const menuToggle = document.getElementById('mobile-menu-toggle');
-                    const menuClose = document.getElementById('mobile-menu-close');
-                    const menuOverlay = document.getElementById('mobile-menu-overlay');
-                    const menuLinks = document.querySelectorAll('.mobile-menu-link, .mobile-menu-cta');
-                    const body = document.body;
-
-                    // Debug: verificar se elementos foram encontrados
-                    console.log('Menu Toggle:', menuToggle);
-                    console.log('Menu Overlay:', menuOverlay);
-                    console.log('Menu Close:', menuClose);
-
-                    if (!menuToggle || !menuOverlay || !menuClose) {
-                        console.error('Elementos do menu mobile não encontrados!');
-                        console.log('Tentando buscar novamente...');
-                        
-                        // Tentar novamente após um delay
-                        setTimeout(function() {
-                            const menuToggle2 = document.getElementById('mobile-menu-toggle');
-                            console.log('Segunda tentativa - Menu Toggle:', menuToggle2);
-                        }, 1000);
-                        return;
-                    }
-                    
-                    console.log('Todos os elementos encontrados! Adicionando event listeners...');
-                    
-                    // Teste: adicionar listener inline para debug
-                    menuToggle.onclick = function() {
-                        console.log('ONCLICK disparado!');
-                    };
-
-                    // Função para abrir menu
-                    function openMenu() {
-                        console.log('Abrindo menu...');
-                        menuOverlay.classList.add('active');
-                        menuToggle.setAttribute('aria-expanded', 'true');
-                        // Usar inert=false para tornar o menu acessível quando aberto
-                        menuOverlay.removeAttribute('inert');
-                        body.style.overflow = 'hidden'; // Prevenir scroll do body
-
-                        // Animar hamburger para X
-                        const lines = menuToggle.querySelectorAll('.hamburger-line');
-                        if (lines.length >= 3) {
-                            lines[0].style.transform = 'rotate(45deg) translateY(5px)';
-                            lines[1].style.opacity = '0';
-                            lines[2].style.transform = 'rotate(-45deg) translateY(-5px) translateX(2px)';
-                            lines[2].style.width = '14px';
-                        }
-                    }
-
-                    // Função para fechar menu
-                    function closeMenu() {
-                        menuOverlay.classList.remove('active');
-                        menuToggle.setAttribute('aria-expanded', 'false');
-                        // Usar inert=true para tornar o menu inacessível quando fechado
-                        menuOverlay.setAttribute('inert', 'true');
-                        body.style.overflow = ''; // Restaurar scroll do body
-
-                        // Restaurar hamburger
-                        const lines = menuToggle.querySelectorAll('.hamburger-line');
-                        if (lines.length >= 3) {
-                            lines[0].style.transform = 'none';
-                            lines[1].style.opacity = '1';
-                            lines[2].style.transform = 'none';
-                            lines[2].style.width = '10px';
-                        }
-                    }
-
-                    // Event listeners
-                    menuToggle.addEventListener('click', function (e) {
-                        console.log('Botão clicado!');
-                        e.preventDefault();
-                        e.stopPropagation();
-                        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-                        console.log('Menu está expandido?', isExpanded);
-                        if (isExpanded) {
-                            closeMenu();
-                        } else {
-                            openMenu();
-                        }
-                    });
-
-                    menuClose.addEventListener('click', closeMenu);
-
-                    // Fechar menu ao clicar no overlay (fora do menu)
-                    menuOverlay.addEventListener('click', function (e) {
-                        if (e.target === menuOverlay) {
-                            closeMenu();
-                        }
-                    });
-
-                    // Fechar menu ao clicar em qualquer link
-                    menuLinks.forEach(link => {
-                        link.addEventListener('click', closeMenu);
-                    });
-
-                    // Fechar menu com tecla ESC
-                    document.addEventListener('keydown', function (e) {
-                        if (e.key === 'Escape' && menuOverlay.classList.contains('active')) {
-                            closeMenu();
-                        }
-                    });
-
-                    // Adicionar transição suave aos hamburger lines
-                    const hamburgerLines = menuToggle.querySelectorAll('.hamburger-line');
-                    hamburgerLines.forEach(line => {
-                        line.style.transition = 'all 0.3s ease';
-                    });
-                });
-
-                // Script para Smooth Scroll com offset (compensar navbar fixa)
                 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                     anchor.addEventListener('click', function (e) {
                         e.preventDefault();
@@ -4220,8 +4105,10 @@
                         }
                     });
                 });
+            </script>
 
-                // Awards Journey Section JavaScript
+            <!-- Awards Journey Section JavaScript -->
+            <script>
                 (function () {
                     const progressLine = document.getElementById('awardsJourneyProgressLine');
                     const milestones = document.querySelectorAll('.awards-journey-milestone');
