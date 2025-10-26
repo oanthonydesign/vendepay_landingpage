@@ -349,6 +349,7 @@ body {
 .vendepay-container-wm {
   max-width: 1200px;
   width: 85%;
+  overflow: visible;
 }
 
 .vendepay-container {
@@ -356,6 +357,7 @@ body {
   position: relative;
   max-width: 1200px;
   width: 85%;
+  overflow: visible;
 }
 
 .vendepay-container-swiper-blog {
@@ -363,6 +365,7 @@ body {
   position: relative;
   max-width: 1200px;
   width: 100%;
+  overflow: visible;
 }
 
 .vendepay-container2 {
@@ -370,12 +373,14 @@ body {
   position: relative;
   max-width: 1200px;
   width: 85%;
+  overflow: visible;
 }
 .vendepay-containerIA {
   margin: 0 auto;
   position: relative;
   max-width: 1200px;
   width: 100%;
+  overflow: visible;
 }
 
 .vendepay-nav a {
@@ -714,11 +719,12 @@ body {
 
 .vendepay-header-container {
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - 80px); /* Subtrai o padding-top do body */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: visible; /* Previne scroll interno */
 }
 
 .vendepay-header-container::before {
@@ -740,6 +746,7 @@ body {
   margin: 0 auto;
   max-width: 1160px;
   width: 85%;
+  overflow: visible; /* Previne scroll interno */
 }
 
 .layout {
