@@ -4150,24 +4150,56 @@
                     const milestones = document.querySelectorAll('.awards-journey-milestone');
                     const totalSlides = 8;
 
-                    const awardsSwiper = new Swiper('.awards-journey-swiper', {
-                        slidesPerView: 1,
-                        spaceBetween: 16,
-                        navigation: {
-                            nextEl: '.awards-journey-swiper .swiper-button-next',
-                            prevEl: '.awards-journey-swiper .swiper-button-prev',
-                        },
-                        breakpoints: {
-                            1280: {
-                                slidesPerView: 1,
-                                spaceBetween: 41,
+                    // Inicializar Swiper apenas em desktop
+                    let awardsSwiper = null;
+                    const swiperContainer = document.querySelector('.awards-journey-swiper');
+                    
+                    function initAwardsSwiper() {
+                        const isMobile = window.innerWidth < 768;
+                        
+                        if (isMobile) {
+                            // Destruir Swiper se existir e adicionar classe mobile
+                            if (awardsSwiper) {
+                                awardsSwiper.destroy(true, true);
+                                awardsSwiper = null;
                             }
-                        },
-                        on: {
-                            slideChange: function () {
-                                updateAwardsTimeline(this.activeIndex);
+                            if (swiperContainer) {
+                                swiperContainer.classList.add('swiper-disabled');
+                                swiperContainer.classList.remove('swiper-initialized');
+                            }
+                        } else {
+                            // Inicializar Swiper apenas em desktop
+                            if (!awardsSwiper) {
+                                if (swiperContainer) {
+                                    swiperContainer.classList.remove('swiper-disabled');
+                                }
+                                awardsSwiper = new Swiper('.awards-journey-swiper', {
+                                    slidesPerView: 1,
+                                    spaceBetween: 41,
+                                    enabled: true,
+                                    allowTouchMove: true,
+                                    navigation: {
+                                        nextEl: '.awards-journey-swiper .swiper-button-next',
+                                        prevEl: '.awards-journey-swiper .swiper-button-prev',
+                                    },
+                                    on: {
+                                        slideChange: function () {
+                                            updateAwardsTimeline(this.activeIndex);
+                                        }
+                                    }
+                                });
                             }
                         }
+                    }
+                    
+                    // Inicializar na carga
+                    initAwardsSwiper();
+                    
+                    // Reinicializar no resize com debounce
+                    let resizeTimeout;
+                    window.addEventListener('resize', function() {
+                        clearTimeout(resizeTimeout);
+                        resizeTimeout = setTimeout(initAwardsSwiper, 250);
                     });
 
                     function updateAwardsTimeline(activeIndex) {
