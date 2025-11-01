@@ -1681,6 +1681,14 @@ swiper-slide img {
   padding: 0 15px;
 }
 
+@media (max-width: 768px) {
+  .awards-journey-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .awards-journey-badge {
   display: inline-flex;
   height: 35px;
@@ -1714,18 +1722,25 @@ swiper-slide img {
 }
 
 .awards-journey-title {
-  font-size: 28px;
+  font-size: 61px;
   line-height: 1.2;
   color: #ffffff;
-  margin: 0 0 40px 0;
-  font-weight: 700;
+  margin: 40px 0 40px 0;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .awards-journey-title {
+    font-size: 24px;
+    text-align: center;
+  }
 }
 
 @media (min-width: 1280px) {
   .awards-journey-title {
     font-size: 44px;
     margin-bottom: 80px;
-    max-width: 989px;
+    max-width: 1200px;
   }
 }
 
